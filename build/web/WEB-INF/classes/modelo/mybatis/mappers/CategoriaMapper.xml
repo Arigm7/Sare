@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Categoria">
+    
+    <select id="getAllCategoria" resultType="modelo.pojos.Categoria" statementType="CALLABLE">
+        {CALL sare.sp_getAllCategoria()}
+    </select>
+    <insert id="registrarCategoria" parameterType="map" statementType="CALLABLE">
+        {CALL sare.sp_registrarCategoria(
+        #{idCategoria,jdbcType=INTEGER,mode=IN},
+        #{nombre,jdbcType=VARCHAR,mode=IN},
+        #{activo,jdbcType=CHAR,mode=IN},
+        #{orden,jdbcType=INTEGER,mode=IN})}
+    </insert>
+    
+    <update id="actualizarCategoria" parameterType="map" statementType="CALLABLE">
+        {CALL sare.sp_actualizarCategoria(
+        #{idCategoria,jdbcType=INTEGER,mode=IN},
+        #{nombre,jdbcType=VARCHAR,mode=IN},
+        #{activo,jdbcType=CHAR,mode=IN},
+        #{orden,jdbcType=INTEGER,mode=IN})}
+    </update>
+    
+    <update id="actualizarEstatusCategoria" parameterType="map" statementType="CALLABLE">
+        {CALL sare.sp_actualizarEstatusCategoria(
+        #{idCategoria,jdbcType=INTEGER,mode=IN},
+        #{activo,jdbcType=CHAR,mode=IN})}
+    </update>
+    
+</mapper>
