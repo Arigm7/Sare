@@ -27,5 +27,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         #{idCatalogo,jdbcType=INTEGER,mode=IN},
         #{activo,jdbcType=CHAR,mode=IN})}
     </update>
-    
+    <select id="getCatalogosByIdCategoria" resultType="modelo.pojos.Catalogo" parameterType="map" statementType="CALLABLE">
+        {CALL sare.getIdCatalogoByIdCategoria(
+        #{idCatalogo,jdbcType=INTEGER,mode=IN})}
+    </select>
 </mapper>

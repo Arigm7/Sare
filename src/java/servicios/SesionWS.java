@@ -42,6 +42,7 @@ public class SesionWS {
             param.put("usuario", usuario);
             param.put("contrasena", JavaUtils.hashString(contrasena.toUpperCase()));
             Usuario u = conn.selectOne("Sesion.login", param);
+            System.out.println(u);
             if(u == null || u.getIdUsuario() == null){
                 res.setError(true);
                 res.setMensaje("No se encontro ningun usuario con esas credenciales");

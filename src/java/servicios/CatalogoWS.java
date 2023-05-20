@@ -2,6 +2,7 @@
 package servicios;
 
 import java.util.HashMap;
+import java.util.List;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Produces;
@@ -11,8 +12,10 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PUT;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.core.MediaType;
 import modelo.mybatis.MyBatisUtil;
+import modelo.pojos.Catalogo;
 import modelo.pojos.Respuesta;
 import org.apache.ibatis.session.SqlSession;
 import utils.JavaUtils;
@@ -134,5 +137,18 @@ public class CatalogoWS {
         return res;
     }
     
-    
+    @GET
+    @Path("getCatalogosByIdCategoria/{idCategoria}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Catalogo> getCatalogoByIdCategoria(@PathParam("idCategoria") Integer idCategoria){
+        SqlSession conn = MyBatisUtil.getSession();
+        try{
+            return conn.selectList("Catalogo.getCatalogosByIdCategoria", idCategoria);
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }finally{
+            conn.close();
+        }
+        return null;
+    }
 }
