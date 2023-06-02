@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Personal">
+    <select id="getAllPersonal" resultType="modelo.pojos.Personal" statementType="CALLABLE">
+        {CALL sare.sp_getAllPersonal()}
+    </select>
+    <insert id="registrarPersonal" parameterType="map" statementType="CALLABLE">
+        {CALL sare.sp_registrarPersonal(
+        #{nombre,jdbcType=VARCHAR,mode=IN},
+        #{apellidoPaterno,jdbcType=VARCHAR,mode=IN},
+        #{apellidoMaterno,jdbcType=VARCHAR,mode=IN},
+        #{curp,jdbcType=VARCHAR,mode=IN},
+        #{rfc,jdbcType=VARCHAR,mode=IN},
+        #{fechaNacimiento,jdbcType=VARCHAR,mode=IN},
+        #{sexo,jdbcType=VARCHAR,mode=IN},
+        #{calle,jdbcType=VARCHAR,mode=IN},
+        #{colonia,jdbcType=VARCHAR,mode=IN},
+        #{numExt,jdbcType=VARCHAR,mode=IN},
+        #{numInt,jdbcType=VARCHAR,mode=IN},
+        #{cp,jdbcType=INTEGER,mode=IN},
+        #{idPais,jdbcType=INTEGER,mode=IN},
+        #{idEntidadFederativa,jdbcType=INTEGER,mode=IN},
+        #{idMunicipio,jdbcType=INTEGER,mode=IN},
+        #{celular,jdbcType=VARCHAR,mode=IN},
+        #{idEstadoCivil,jdbcType=INTEGER,mode=IN},
+        #{ultimoGradoEstudio,jdbcType=VARCHAR,mode=IN},
+        #{profecion,jdbcType=VARCHAR,mode=IN},
+        #{idEstatus,jdbcType=INTEGER,mode=IN},
+        #{tiempoCreacion,jdbcType=DATE,mode=IN},
+        #{tiempoActualizacion,jdbcType=DATE,mode=IN})}
+    </insert>
+    
+   
+</mapper>
